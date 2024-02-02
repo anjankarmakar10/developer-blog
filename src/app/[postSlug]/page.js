@@ -4,7 +4,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import styles from "./postSlug.module.css";
 import { loadBlogPost } from "@/helpers/file-helpers";
 import { BLOG_TITLE } from "@/constants";
-import CodeSnippet from "@/components/CodeSnippet";
+import COMPONENT_MAP from "@/helpers/mdx-components";
 
 const getBlogPost = cache(async (slug) => {
   return await loadBlogPost(slug);
@@ -31,12 +31,7 @@ async function BlogPost({ params: { postSlug } }) {
     <article className={styles.wrapper}>
       <BlogHero title={title} publishedOn={publishedOn} />
       <div className={styles.page}>
-        <MDXRemote
-          source={content}
-          components={{
-            pre: CodeSnippet,
-          }}
-        />
+        <MDXRemote source={content} components={COMPONENT_MAP} />
       </div>
     </article>
   );
