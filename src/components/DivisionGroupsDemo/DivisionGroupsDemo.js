@@ -22,6 +22,8 @@ function DivisionGroupsDemo({
 
   const remainder = includeRemainderArea ? numOfItems % numOfGroups : null;
 
+  const totalNumInGroups = numOfGroups * numOfItemsPerGroup;
+
   // When we're splitting into 1-3 groups, display side-by-side
   // columns. When we get to 4, it should switch to a 2x2 grid.
   const gridStructure =
@@ -56,7 +58,7 @@ function DivisionGroupsDemo({
                 {range(numOfItemsPerGroup).map((index) => {
                   const totalInPreviousGroup = groupIndex * numOfItemsPerGroup;
 
-                  const layoutId = `${id}=${index + totalInPreviousGroup}`;
+                  const layoutId = `${id}-${index + totalInPreviousGroup}`;
                   return (
                     <motion.div
                       layoutId={layoutId}
@@ -74,9 +76,19 @@ function DivisionGroupsDemo({
           <div className={styles.remainderArea}>
             <p className={styles.remainderHeading}>Remainder Area</p>
 
-            {range(remainder).map((index) => {
-              return <div key={index} className={styles.item} />;
-            })}
+            {range(totalNumInGroups, numOfItems)
+              .reverse()
+              .map((index) => {
+                const layoutId = `${id}-${index}`;
+
+                return (
+                  <motion.div
+                    layoutId={layoutId}
+                    key={layoutId}
+                    className={styles.item}
+                  />
+                );
+              })}
           </div>
         )}
 
