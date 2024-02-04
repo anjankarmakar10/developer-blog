@@ -3,7 +3,14 @@
   position: relative;
   z-index: 2;
 }
-
+.notFound {
+  padding-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
 .page {
   position: relative;
   display: grid;

@@ -5,9 +5,12 @@ import styles from "./postSlug.module.css";
 import { loadBlogPost } from "@/helpers/file-helpers";
 import { BLOG_TITLE } from "@/constants";
 import COMPONENT_MAP from "@/helpers/mdx-components";
+import { notFound } from "next/navigation";
 
 const getBlogPost = cache(async (slug) => {
-  return await loadBlogPost(slug);
+  return loadBlogPost(slug)
+    .then((data) => data)
+    .catch(notFound);
 });
 
 export async function generateMetadata({ params: { postSlug } }) {
