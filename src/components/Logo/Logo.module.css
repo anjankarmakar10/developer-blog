@@ -16,14 +16,13 @@
 
 @media (pointer: fine) {
   .wrapper:hover {
-    font-weight: 900;
-    transition: font-weight 100ms, transform 100ms;
-    transform: translateX(-1px);
+    border-bottom: 6px solid var(--color-primary-500);
+    transition: border 100ms, transform 100ms;
   }
 }
 
 @media (pointer: fine) and (max-width: 35rem) {
-  .wrapper[data-mobile-alignment='center']:hover {
-    transform: translateX(0px);
+  .wrapper[data-mobile-alignment="center"]:hover {
+    /* transform: translateX(0px); */
   }
 }
